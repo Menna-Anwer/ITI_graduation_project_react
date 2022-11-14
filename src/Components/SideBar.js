@@ -17,23 +17,27 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 // import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import EventIcon from '@mui/icons-material/Event';
 import TableViewIcon from '@mui/icons-material/TableView';
+import {  Route, Switch } from 'react-router-dom';
+import Lessone from './../Teacher/Lesson/Lessone';
 
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <nav>
+      <Box sx={{ display: 'flex',overflow:"visible"  }}>
       <CssBaseline />
-      <AppBar position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
+      <AppBar style={{hight:"100Px"}}
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
             Nav
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer sx={{ width: drawerWidth,  flexShrink: 0,
+      <Drawer sx={{ width: drawerWidth, flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
@@ -48,8 +52,8 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h3> <Link className="nav-link"  to="/home">
-                   <AccountCircleIcon style={{fontSize:"30px"}} /> Profile</Link></h3>
+                   <h5> <Link className="nav-link"  to="/home">
+                   <AccountCircleIcon style={{fontSize:"25px"}} /> Profile</Link></h5>
                 </ListItemIcon>
                 <ListItemText />
               </ListItemButton>
@@ -57,8 +61,8 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h3> <Link className="nav-link"  to="/home">
-                   <MenuBookIcon style={{fontSize:"30px"}} /> Lessons</Link></h3>
+                   <h5> <Link className="nav-link"  to="/lessone">
+                   <MenuBookIcon style={{fontSize:"25px"}} /> Lessons</Link></h5>
                 </ListItemIcon>
                 <ListItemText />
               </ListItemButton>
@@ -66,8 +70,8 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h3> <Link className="nav-link"  to="/home">
-                   <EventIcon style={{fontSize:"30px"}} />Events </Link></h3>
+                   <h5> <Link className="nav-link"  to="/home">
+                   <EventIcon style={{fontSize:"25px"}} />Events </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
               </ListItemButton>
@@ -75,16 +79,27 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                <h3> <Link className="nav-link"  to="/home">
-                   <TableViewIcon style={{fontSize:"30px"}} />Time Tabel </Link></h3>
+                <h5> <Link className="nav-link"  to="/home">
+                   <TableViewIcon style={{fontSize:"25px"}} />Time Tabel </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
               </ListItemButton>
         </ListItem>
-
-    
         </List>
       </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
+      <Toolbar />
+      <Switch>
+         <Route path={"/lessone"} exact component={Lessone}/>
+      </Switch>
+        
+      </Box>
     </Box>
+    
+    </nav>
+    
   );
 }

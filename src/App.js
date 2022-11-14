@@ -1,18 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
+import React from 'react'
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import PermanentDrawerLeft from './Components/SideBar';
+import Store from './Store/Store';
 
 function App() {
   return (
     <div className="App">
-       <BrowserRouter>
-       <PermanentDrawerLeft></PermanentDrawerLeft>
-            <Switch>
-          
-            </Switch>
+      <Provider store={Store}>
+        <BrowserRouter>
+         <PermanentDrawerLeft/>  
         </BrowserRouter>
-       {/* <Buttons/> */}
+      </Provider>
        
     </div>
   );

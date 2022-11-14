@@ -1,0 +1,25 @@
+/* .Dialog-container{
+    width: 50%;
+} */
+
+form{
+    width: 95%;
+    margin: auto;
+    margin-top:10%;
+    
+}
+.form-container{
+    width: 100%;
+    margin: auto !important;
+}
+.lesson-header{
+    text-align: center;
+    margin-top: 10px;
+    color: RGB(146,148,163);
+}
+.input{
+    margin: auto !important;
+    margin-top: 20px !important;
+    width: 100%;
+    display: block;
+}
