@@ -1,0 +1,7 @@
+.btn-addLesson{
+    position: fixed !important;
+    right: 3%;
+    bottom:6%;
+    z-index: 100;
+    display: block;
+}
