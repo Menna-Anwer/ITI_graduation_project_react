@@ -33,7 +33,7 @@ function Lessone() {
       </div>
     
       <AddLesson open={open}  handleClickOpen={handleClickOpen} handleClose={handleClose}/>
-      <Fab className="btn-addLesson" color="primary" aria-label="add" onClick={handleClickOpen}>
+      <Fab className="btn" color="primary" aria-label="add" onClick={handleClickOpen}>
         <AddIcon />
       </Fab>
     </section>

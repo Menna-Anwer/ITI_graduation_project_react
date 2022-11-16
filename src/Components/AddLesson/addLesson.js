@@ -85,7 +85,7 @@ function AddLesson(props) {
       lessonVideo:lessonData.video,
       lessonSubj:lessonData.subject,
       lessonGrade:lessonData.grade,
-      lessonCreator
+      // lessonCreator
     }  
     dispatch(AddLessonsAction())
   }

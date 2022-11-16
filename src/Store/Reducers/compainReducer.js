@@ -4,11 +4,13 @@ import lessonsReducer from "./lessonsReducer";
 import timeTableReducer from "./gradesReducer";
 import studentReducer from "./studentReducer";
 import GetLessonsReducer from './GetLessonReducer';
+import GetStudentReducer from './GetStudentsReducer';
 
 export default combineReducers ({
    event : eventReducer ,
    lessons : lessonsReducer ,
    timeTable : timeTableReducer ,
    student : studentReducer,
-   lessonTeacher : GetLessonsReducer
+   lessonTeacher : GetLessonsReducer,
+   getStudent: GetStudentReducer
 })
