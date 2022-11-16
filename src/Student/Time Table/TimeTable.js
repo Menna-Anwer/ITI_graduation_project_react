@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getStudent } from '../Store/Actions/studentAction';
 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -72,6 +73,7 @@ export default function TimeTable() {
                 </TableHead>
                 <TableBody>
                     {timeTable.map((row) => (
+
                         <StyledTableRow key={row.day}>
                             <StyledTableCell component="th" scope="row">
                                 {row.day}
