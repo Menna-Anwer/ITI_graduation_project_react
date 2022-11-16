@@ -1,10 +1,14 @@
 import { axiosinstance } from "../../../Network/axiosinstance";
 
-export const getGrades = () => (dispatch) => {
-    return axiosinstance.get("/grade")
+export const getTimeTable = () => (dispatch) => {
+    return axiosinstance.get("/classtimetable/table",{
+        params:{
+            grade : "one"
+        }
+    })
         .then((res)=>
             dispatch({
-                type : "GET_GEADES_DATA",
+                type : "GET_TIMETAPLE_DATA",
                 payload: res.data
             })
         )

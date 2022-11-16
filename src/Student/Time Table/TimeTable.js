@@ -9,8 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getStudent } from '../../Components/Store/Actions/studentAction';
-
+import { getTimeTable } from '../../Store/Actions/gradesAction';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -52,7 +51,7 @@ export default function TimeTable() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getStudent())
+        dispatch(getTimeTable())
     },[])
 
     return (
@@ -73,7 +72,6 @@ export default function TimeTable() {
                 </TableHead>
                 <TableBody>
                     {timeTable.map((row) => (
-
                         <StyledTableRow key={row.day}>
                             <StyledTableCell component="th" scope="row">
                                 {row.day}
