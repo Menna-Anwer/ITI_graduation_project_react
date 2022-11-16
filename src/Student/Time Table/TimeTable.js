@@ -7,6 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getStudent } from '../Store/Actions/studentAction';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,21 +32,29 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(day, subject1, subject2, subject3, subject4, subject5, subject6, subject7) {
-    return { day, subject1, subject2, subject3, subject4, subject5, subject6, subject7 };
-}
+// function createData(day, subject1, subject2, subject3, subject4, subject5, subject6, subject7) {
+//     return { day, subject1, subject2, subject3, subject4, subject5, subject6, subject7 };
+// }
 
-const rows = [
-    createData('Sunday', "Arabic", "English", "Math", "Sience", "Social", "Computer", "French"),
-    createData('Monday', "English", "Arabic", "Sience", "Math", "Computer", "Social", "French"),
-    createData('Tuesday', "Math", "Sience", "Arabic", "English", "French", "Social", "Computer"),
-    createData('Wednesday', "Arabic", "Computer", "English", "French", "Math", "Social", "Sience"),
-    createData('Thursday', "French", "Social", "Computer", "Sience", "English", "Arabic", "Math"),
+// const rows = [
+//     createData('Sunday', "Arabic", "English", "Math", "Sience", "Social", "Computer", "French"),
+//     createData('Monday', "English", "Arabic", "Sience", "Math", "Computer", "Social", "French"),
+//     createData('Tuesday', "Math", "Sience", "Arabic", "English", "French", "Social", "Computer"),
+//     createData('Wednesday', "Arabic", "Computer", "English", "French", "Math", "Social", "Sience"),
+//     createData('Thursday', "French", "Social", "Computer", "Sience", "English", "Arabic", "Math"),
 
 
-];
+// ];
 
 export default function TimeTable() {
+
+    const timeTable = useSelector((state)=> state.student.list)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getStudent())
+    },[])
+
     return (
         <TableContainer component={Paper} sx={{ maxWidth: 1200 }}>
             <Table sx={{ maxWidth: 1200 }} aria-label="customized table">
@@ -60,7 +72,8 @@ export default function TimeTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {timeTable.map((row) => (
+
                         <StyledTableRow key={row.day}>
                             <StyledTableCell component="th" scope="row">
                                 {row.day}

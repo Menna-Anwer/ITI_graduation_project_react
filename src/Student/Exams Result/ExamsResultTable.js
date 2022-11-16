@@ -7,6 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useEffect} from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getGrades } from '../Store/Actions/gradesAction';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,18 +31,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(subjectName, mark, fullMark, status) {
-    return { subjectName, mark, fullMark, status };
-}
+// function createData(subjectName, mark, fullMark, status) {
+//     return { subjectName, mark, fullMark, status };
+// }
 
-const rows = [
-    createData('Arabic', 85, 100, "sucess"),
-    createData('English', 45, 100, "failed"),
-    createData('Mathematics', 80, 100, "sucess"),
+// const rows = [
+//     createData('Arabic', 85, 100, "sucess"),
+//     createData('English', 45, 100, "failed"),
+//     createData('Mathematics', 80, 100, "sucess"),
 
-];
+// ];
 
 export default function ExamsResultTable() {
+
+    const grades = useSelector ((state) => state.grades.list)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getGrades())
+    },[])
+
+
     return (
         <TableContainer component={Paper} sx={{ maxWidth: 900 }}>
             <Table aria-label="customized table">
@@ -52,7 +64,7 @@ export default function ExamsResultTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {grades.map((row) => (
                         <StyledTableRow key={row.subjectName}>
                             <StyledTableCell component="th" scope="row">
                                 {row.subjectName}
