@@ -1,14 +1,19 @@
 const INTIAL_VALUE ={
-  lessone :null  
+  lessones : []
 }
    
-export default function AddLessonReducer(state=INTIAL_VALUE,action){
+export default function LessonReducer(state=INTIAL_VALUE,action){
     switch (action.type) { 
         case "ADD_LESSON":
             return{
             ...state,
-            lessone :action.payload
+            lessones :action.payload
             }     
+        case "GET_LESSONS":
+            return{
+            ...state,
+            lessones :action.payload
+            }      
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import {combineReducers} from "redux"
-import AddLessonReducer from "./addLessonReducer"
+import LessonReducer from "./addLessonReducer"
 
 
 export default combineReducers ({
-    addLesson : AddLessonReducer
+    addLesson : LessonReducer
 })

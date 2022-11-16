@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 // import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import EventIcon from '@mui/icons-material/Event';
@@ -21,11 +21,11 @@ import {  Route, Switch } from 'react-router-dom';
 import Lessone from './../Teacher/Lesson/Lessone';
 
 
-const drawerWidth = 240;
+const drawerWidth = 190;
 
 export default function PermanentDrawerLeft() {
   return (
-    <nav>
+    <BrowserRouter>
       <Box sx={{ display: 'flex',overflow:"visible"  }}>
       <CssBaseline />
       <AppBar style={{hight:"100Px"}}
@@ -70,7 +70,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="/home">
+                   <h5> <Link className="nav-link"  to="/event">
                    <EventIcon style={{fontSize:"25px"}} />Events </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
@@ -98,8 +98,7 @@ export default function PermanentDrawerLeft() {
         
       </Box>
     </Box>
-    
-    </nav>
+  </BrowserRouter>
     
   );
 }

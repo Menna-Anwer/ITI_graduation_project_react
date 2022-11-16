@@ -1,0 +1,17 @@
+.form-container{
+    width: 50%;
+    border-radius: 3%;
+    box-shadow: 7px 5px 18px 6px #76cfeca8;
+}
+.input-container{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10%;
+    padding-top: 7%;
+    
+}
+.input{
+    width: 100%;
+    margin-bottom: 5%;
+    
+}
