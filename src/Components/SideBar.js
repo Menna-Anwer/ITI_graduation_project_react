@@ -52,7 +52,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="/home">
+                   <h5> <Link className="nav-link"  to="#">
                    <AccountCircleIcon style={{fontSize:"25px"}} /> Profile</Link></h5>
                 </ListItemIcon>
                 <ListItemText />
@@ -70,7 +70,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="/event">
+                   <h5> <Link className="nav-link"  to="#">
                    <EventIcon style={{fontSize:"25px"}} />Events </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
@@ -79,7 +79,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                <h5> <Link className="nav-link"  to="/home">
+                <h5> <Link className="nav-link"  to="#">
                    <TableViewIcon style={{fontSize:"25px"}} />Time Tabel </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
