@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
 import { useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getGrades } from '../Store/Actions/gradesAction';
@@ -50,7 +51,6 @@ export default function ExamsResultTable() {
     useEffect(()=>{
         dispatch(getGrades())
     },[])
-
 
     return (
         <TableContainer component={Paper} sx={{ maxWidth: 900 }}>
