@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getStudent } from '../Store/Actions/studentAction';
+import { getStudent } from '../../Components/Store/Actions/studentAction';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
