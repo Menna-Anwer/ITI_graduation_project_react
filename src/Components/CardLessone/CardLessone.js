@@ -8,11 +8,13 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function MediaCard() { 
+export default function MediaCard(props) { 
+  const {title,video,subject,grade}= props
+  
   const Video = () => {
     return(
       <video controls width="100%"> 
-        <source src="https://www.youtube.com/embed/PNtsqWVKTcY?list=RDPNtsqWVKTcY" type="video/mp4"/>
+        <source src={`http://localhost:8080/${video}`} type="video/mp4"/>
       </video>
     )
   }
@@ -25,13 +27,13 @@ export default function MediaCard() {
       />
       <CardContent>
       <Typography gutterBottom variant="h6" component="div">
-           Lessone
+           {subject}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-         Tile
+         {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Grade
+          {grade}
         </Typography>
       </CardContent>
       <CardActions>

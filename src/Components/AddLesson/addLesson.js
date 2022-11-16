@@ -7,6 +7,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import "./addLesson.css"
+import { useDispatch } from 'react-redux';
+import { AddLessonsAction } from './../../Store/Actions/AddLessonAction';
+import Lessone from './../../Teacher/Lesson/Lessone';
 function AddLesson(props) {
   const {handleClose,open} = props;
   const [lessonData ,setData] = useState({
@@ -22,6 +25,8 @@ function AddLesson(props) {
     subjectError : null,
     gradeError : null,
   })
+
+  const dispatch = useDispatch()
 
   const changeData =(e)=>{
     if(e.target.name === "title"){
@@ -75,6 +80,14 @@ function AddLesson(props) {
   }
   const handleClick =(e)=>{
       e.preventDefault();
+    const obj ={ 
+      lessonTitle:lessonData.title,
+      lessonVideo:lessonData.video,
+      lessonSubj:lessonData.subject,
+      lessonGrade:lessonData.grade,
+      lessonCreator
+    }  
+    dispatch(AddLessonsAction())
   }
 
   return (
@@ -120,7 +133,7 @@ function AddLesson(props) {
             </DialogContent>
         <DialogActions className=' my-3  mx-3'>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button  onClick={handleClose}  variant="contained" endIcon={<SaveIcon />}>
+          <Button type="submit" variant="contained" endIcon={<SaveIcon />}>
              Save
           </Button>
         </DialogActions>

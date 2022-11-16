@@ -1,10 +1,14 @@
 import { axiosinstance } from "../../Network/axiosinstance";
 
-export const getGrades = () => (dispatch) => {
-    return axiosinstance.get("/grade")
+export const GetLessonsAction = (id) => (dispatch) => {
+    return axiosinstance.get("/videos/teacher/lesson",{
+        params:{
+            id:id
+        }
+    })
         .then((res)=>
             dispatch({
-                type : "GET_GEADES_DATA",
+                type : "GET_LESSONS",
                 payload: res.data
             })
         )

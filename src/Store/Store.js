@@ -4,6 +4,6 @@ import compainReducer from "./Reducers/compainReducer";
 import thunk from "redux-thunk";
 
 
-const Store = createStore(compainReducer , composeWithDevTools(applyMiddleware(thunk)))
+const Store = createStore(compainReducer,composeWithDevTools(applyMiddleware(thunk)))
 
 export default Store
