@@ -9,23 +9,25 @@ import { GetStudentAction } from './../../Store/Actions/GetStudentsAction';
 import { useEffect } from 'react';
 const Points = () => {
   const {students} = useSelector(state => state.getStudent)
+  const[data, setData] = useState(null);
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(GetStudentAction())
   },[])
-  console.log(students);
     const [open, setOpen] = useState(false);
-    const handleClickOpen = () => {
+    const handleClickOpen = (ele) => {
+        setData(ele);
         setOpen(true);
       };
     
       const handleClose = () => {
+        setData(null)
         setOpen(false);
       };
   return (
     <div>
        <TablePoints rows={students} handleClickOpen={handleClickOpen} />
-       <AddPoints open={open}  handleClose={handleClose}/>
+       <AddPoints open={open}  handleClose={handleClose} data={data}/>
       {/* <Fab className="btn" color="primary" aria-label="add" onClick={handleClickOpen}>
         <AddIcon />
       </Fab> */}
