@@ -68,8 +68,8 @@ const Login = () => {
             e.preventDefault();
         }
   return (
-    <div>
-        <div className='container'>
+    <div className='body-container'>
+        <div className='container pt-3'>
              <form className='form-container' onSubmit={handleSubmit}>
               <div className='input-container' >
                 <h1 style={{color:"RGB(146,148,163)"}}>Login</h1>
@@ -100,7 +100,10 @@ const Login = () => {
                      />
                 </FormControl> 
                 {error && <p style={{color: 'red'}}>{error.passError}</p>}       
-                <Button className='my-5'  variant="contained">Submit</Button>  
+                <div className='pb-5'>
+                <Button className='mt-5 btn-login'  variant="contained">Login</Button>  
+
+                </div>
               </div>
                
              </form>

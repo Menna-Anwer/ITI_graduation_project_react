@@ -13,8 +13,8 @@ function App() {
       <Provider store={Store}>
         <BrowserRouter>
          <Switch>
+          <Route path={"/login"} exact component={Login}/>
            <Route path={"/"} component={PermanentDrawerLeft}/>
-           <Route path={"/login"} exact component={Login}/>
          </Switch>
         </BrowserRouter>
       </Provider>

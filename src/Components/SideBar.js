@@ -73,15 +73,6 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="#">
-                   <EventIcon style={{fontSize:"25px"}} />Events </Link></h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-        </ListItem>
-        <ListItem >
-              <ListItemButton>
-                <ListItemIcon>
                 <h5> <Link className="nav-link"  to="/points">
                    <TableViewIcon style={{fontSize:"25px"}} /> Points </Link></h5>
                 </ListItemIcon>
