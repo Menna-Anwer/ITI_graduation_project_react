@@ -9,6 +9,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import "./Login.css"
+import { MenuItem, Select } from '@mui/material';
 
 const Login = () => {
     const [values, setValues] = useState({
@@ -99,13 +100,25 @@ const Login = () => {
                       label="Password"
                      />
                 </FormControl> 
+                <FormControl className='input mt-4' variant="outlined">
+                <InputLabel id="demo-simple-select-label">Login as</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={"student"}
+                  label="Login as"
+                  onChange={changeData}
+                >
+                  <MenuItem value={"student"}>Student</MenuItem>
+                  <MenuItem value={"teacher"}>Teacher</MenuItem>
+                </Select>
+              </FormControl>
                 {error && <p style={{color: 'red'}}>{error.passError}</p>}       
                 <div className='pb-5'>
                 <Button className='mt-5 btn-login'  variant="contained">Login</Button>  
 
                 </div>
               </div>
-               
              </form>
         </div>
     </div>
