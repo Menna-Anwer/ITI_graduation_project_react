@@ -8,44 +8,58 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function MediaCard(props) { 
-  const {title,video,subject,grade}= props
-  
+
+const mapped = {
+  1: 'Arabic',
+  2: 'English',
+  3: 'Math',
+  4: 'Sience',
+  5: 'Social studies',
+  6: 'Computer',
+  7: 'Frinsh'
+}
+export default function MediaCard(props) {
+  const { title, video, subject, grade, ele, handleClickOpen, handleDelete } = props
+
   const Video = () => {
-    return(
-      <video controls width="100%"> 
-        <source src={`http://localhost:8080/${video}`} type="video/mp4"/>
+    return (
+      <video controls width="100%">
+        <source src={`http://localhost:8080/${video}`} type="video/mp4" />
       </video>
     )
   }
   return (
     <div className="col-lg-4 col-md-6 col-sm-12 my-4">
-         <Card sx={{ maxWidth: 345 }} >
-      <CardMedia
-        component={Video}
-        height="140"
-      />
-      <CardContent>
-      <Typography gutterBottom variant="h6" component="div">
-           {subject}
-        </Typography>
-        <Typography gutterBottom variant="h5" component="div">
-         {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {grade}
-        </Typography>
-      </CardContent>
-      <CardActions>
-      <Button variant="outlined"  color="error" startIcon={<DeleteIcon />}>
-        Delete
-      </Button>
-      <Button variant="contained" endIcon={<EditIcon/>}>
-        Edit
-      </Button>
-      </CardActions>
-    </Card>
+      <Card sx={{ maxWidth: 345 }} >
+        <CardMedia
+          component={Video}
+          height="140"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="div">
+            {mapped[subject]}
+          </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {grade}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button variant="outlined" onClick={() => {
+            handleDelete(ele._id)
+          }} color="error" startIcon={<DeleteIcon />}>
+            Delete
+          </Button>
+          <Button variant="contained" onClick={() => {
+            handleClickOpen(ele)
+          }} endIcon={<EditIcon />}>
+            Edit
+          </Button>
+        </CardActions>
+      </Card>
     </div>
-   
+
   );
 }

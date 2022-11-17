@@ -20,7 +20,7 @@ import TableViewIcon from '@mui/icons-material/TableView';
 import {  Route, Switch } from 'react-router-dom';
 import Lessone from './../Teacher/Lesson/Lessone';
 import Points from './../Teacher/Points/Points';
-import Schedule from './../Teacher/Schedule/Schedule';
+
 
 
 
@@ -55,7 +55,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="/home">
+                   <h5> <Link className="nav-link"  to="#">
                    <AccountCircleIcon style={{fontSize:"25px"}} /> Profile</Link></h5>
                 </ListItemIcon>
                 <ListItemText />
@@ -73,7 +73,7 @@ export default function PermanentDrawerLeft() {
         <ListItem >
               <ListItemButton>
                 <ListItemIcon>
-                   <h5> <Link className="nav-link"  to="/event">
+                   <h5> <Link className="nav-link"  to="#">
                    <EventIcon style={{fontSize:"25px"}} />Events </Link></h5>
                 </ListItemIcon>
                 <ListItemText />
@@ -88,15 +88,6 @@ export default function PermanentDrawerLeft() {
                 <ListItemText />
               </ListItemButton>
         </ListItem>
-        <ListItem >
-              <ListItemButton>
-                <ListItemIcon>
-                <h5> <Link className="nav-link"  to="/schedule">
-                   <TableViewIcon style={{fontSize:"25px"}} />Schedule</Link></h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-        </ListItem>
         </List>
       </Drawer>
       <Box
@@ -107,7 +98,6 @@ export default function PermanentDrawerLeft() {
       <Switch>
          <Route path={"/lessone"} exact component={Lessone}/>
          <Route path={"/points"} exact component={Points}/>
-         <Route path={"/schedule"} exact component={Schedule}/>
       </Switch>
         
       </Box>

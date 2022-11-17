@@ -1,15 +1,15 @@
 import { axiosinstance } from "../../Network/axiosinstance";
 
 
-export const AddLessonsAction = (lesson) => async (dispatch) => {
+export const editeLessonsAction = (lesson, id) => async (dispatch) => {
     try {
-        const res = await axiosinstance.post("/videos",lesson,{
+        const res = await axiosinstance.put(`/videos/${id}`,lesson,{
             headers:{
                 "Content-Type": "multipart/form-data"
             }
         });
         return dispatch({
-            type: "ADD_LESSON",
+            type: "EDITE_LESSON",
             payload: res.data
         });
     } catch (err) {

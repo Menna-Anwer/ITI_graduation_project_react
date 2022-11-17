@@ -1,10 +1,11 @@
 import { axiosinstance } from "../../Network/axiosinstance";
 
-export const GetStudentAction = () => async (dispatch) => {
+
+export const deleteLessonsAction = (id) => async (dispatch) => {
     try {
-        const res = await axiosinstance.get("/student");
+        const res = await axiosinstance.delete(`/videos/${id}`);
         return dispatch({
-            type: "GET_STUDENT",
+            type: "DELETE_LESSON",
             payload: res.data
         });
     } catch (err) {
