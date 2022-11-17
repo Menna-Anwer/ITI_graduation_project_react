@@ -19,7 +19,7 @@ const mapped = {
   7: 'Frinsh'
 }
 export default function MediaCard(props) {
-  const { title, video, subject, grade, ele, handleClickOpen, handleDelete } = props
+  const { title, video, subject, grade, ele, handleClickOpen, handleDelete,hidden} = props
 
   const Video = () => {
     return (
@@ -46,7 +46,7 @@ export default function MediaCard(props) {
             {grade}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions hidden={hidden}>
           <Button variant="outlined" onClick={() => {
             handleDelete(ele._id)
           }} color="error" startIcon={<DeleteIcon />}>

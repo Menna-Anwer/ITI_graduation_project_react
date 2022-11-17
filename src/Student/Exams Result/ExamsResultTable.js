@@ -8,10 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import { useEffect} from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getGrades } from '../Store/Actions/gradesAction';
-
+// import { getGrades } from '../../Store/Actions/gradesAction';
+// ../Store/Actions/gradesAction
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -45,12 +45,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ExamsResultTable() {
 
-    const grades = useSelector ((state) => state.grades.list)
+    const grades = useSelector((state) => state.grades.list)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        dispatch(getGrades())
-    },[])
+    // useEffect(() => {
+    //     dispatch(getGrades())
+    // }, [])
 
     return (
         <TableContainer component={Paper} sx={{ maxWidth: 900 }}>

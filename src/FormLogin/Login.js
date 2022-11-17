@@ -64,13 +64,12 @@ const Login = () => {
               console.log(event.target.value)
           }
         }
-
         const handleSubmit =(e)=>{
             e.preventDefault();
         }
   return (
     <div className='body-container'>
-        <div className='container pt-3'>
+        <div className='container py-3 '>
              <form className='form-container' onSubmit={handleSubmit}>
               <div className='input-container' >
                 <h1 style={{color:"RGB(146,148,163)"}}>Login</h1>

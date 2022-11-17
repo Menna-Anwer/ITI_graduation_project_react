@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getTimeTable } from '../../Store/Actions/gradesAction'
+import { getTeacherTable } from '../../Store/Actions/teachertableAction';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -30,20 +31,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export default function TimeTable() {
+export default function TeacherTable() {
 
-    const timeTable = useSelector((state) => state.timeTable.list)
+    const teacherTable = useSelector((state) => state.teacherTimeTable.list)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getTimeTable())
+        dispatch(getTeacherTable())
     }, [])
-    console.log(timeTable)
-    console.log(timeTable.timeTable)
 
     return (
-        <TableContainer component={Paper} style={{width:"90%",height:"75vh",margin:"auto"}}>
-            <Table style={{height:"75vh"}} aria-label="customized table">
+        <TableContainer component={Paper} sx={{ maxWidth: 1200 }}>
+            <Table sx={{ maxWidth: 1200 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Day</StyledTableCell>
@@ -53,23 +52,22 @@ export default function TimeTable() {
                         <StyledTableCell align="center">10:15 - 11:00</StyledTableCell>
                         <StyledTableCell align="center">11:15 - 12:00</StyledTableCell>
                         <StyledTableCell align="center">12:00 - 12:45</StyledTableCell>
-                        <StyledTableCell align="center">12:45 - 1:30</StyledTableCell>
+
 
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {timeTable.timeTable.map((row) => (
+                    {teacherTable.timeTable.map((row) => (
                         <StyledTableRow key={row.day}>
                             <StyledTableCell component="th" scope="row">
                                 {row.day}
                             </StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["1"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["2"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["3"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["4"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["5"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["6"]}</StyledTableCell>
-                            <StyledTableCell align="center">{row.subjects["7"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["1"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["2"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["3"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["4"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["5"]}</StyledTableCell>
+                            <StyledTableCell align="center">{row.classes["6"]}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

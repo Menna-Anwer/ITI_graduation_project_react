@@ -39,7 +39,7 @@ function Lessone() {
       <div className='row'>
         {lessons.map(ele=>(<MediaCard title={ele.lessonTitle} video={ele.lessonURL} 
         subject={ele.lessonSubj}grade={ele.lessonGrade} 
-        handleClickOpen={handleClickOpen} ele={ele} handleDelete={handleDelete} key={ele._id}/>))}
+        handleClickOpen={handleClickOpen} ele={ele} hidden={false} handleDelete={handleDelete} key={ele._id}/>))}
       </div>
       <AddLesson open={open} handleClose={handleClose} data={less}/>
       <Fab className="btn-addLesson" color="primary" aria-label="add" onClick={()=>{

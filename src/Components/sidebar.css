@@ -1,0 +1,10 @@
+.css-1hx29v6-MuiPaper-root-MuiAppBar-root{
+    background-image: linear-gradient( to left ,rgb(206, 226, 238) ,rgb(104, 188, 236), rgb(8, 107, 164)) !important;
+}
+.css-1h4p55e-MuiDrawer-docked .MuiDrawer-paper{
+    box-shadow: 2px 0px 10px 2px #a4a6a770;
+}
+.css-zxdg2z{
+    background-image: linear-gradient( to right ,rgba(239, 244, 247, 0.881) ,rgba(228, 242, 250, 0.817)) !important;
+ height: 100%;
+}

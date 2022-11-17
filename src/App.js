@@ -5,8 +5,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PermanentDrawerLeft from './Components/SideBar';
 import Login from './FormLogin/Login';
 import Store from './Store/Store';
-
-
 function App() {
   return (
     <div className="App">

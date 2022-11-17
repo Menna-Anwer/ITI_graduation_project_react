@@ -3,10 +3,12 @@ import TimeTable from "./TimeTable"
 function TablePage() {
 
     return (
-        <>
-            <h1>Student Time Table</h1>
+        <div className="container">
+             <h1 className="text-center py-3">Student Time Table</h1>
             <TimeTable align="center" />
-        </>
+        </div>
+           
+        
     )
 }
 export default TablePage

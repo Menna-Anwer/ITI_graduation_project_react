@@ -4,9 +4,9 @@ const INITIAL_VALUE = {
     }
 }
 
-export default function timeTableReducer(state = INITIAL_VALUE, Action) {
+export default function teacherTableReducer(state = INITIAL_VALUE, Action) {
     switch (Action.type) {
-        case "GET_TIMETABLE_DATA":
+        case "GET_TEACHERTABLE_DATA":
             return {
                 ...state,
                 list: Action.payload
