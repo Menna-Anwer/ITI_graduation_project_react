@@ -1,15 +1,15 @@
 import { axiosinstance } from "../../Network/axiosinstance";
 
-export const getTimeTable = () => async (dispatch) => {
+export const getTeacherTable = () => async (dispatch) => {
     try {
-        const res = await axiosinstance.get("/classtimetable/table", {
+        const res = await axiosinstance.get("/teachertimetable/table", {
             params: {
-                grade: "one"
+                id: "637490d138026d6dce0f3abc"
             }
         });
         console.log(res.data)
         return dispatch({
-            type: "GET_TIMETABLE_DATA",
+            type: "GET_TEACHERTABLE_DATA",
             payload: res.data
         });
     } catch (err) {

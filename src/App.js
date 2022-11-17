@@ -12,11 +12,11 @@ function App() {
     <div className="App">
       <Provider store={Store}>
         <BrowserRouter>
-         <Switch>
-           <Route path={"/"} exact component={PermanentDrawerLeft}/>
-    
-           <Route path={"/login"} exact component={Login}/>
-         </Switch>
+          <Switch>
+            <Route path={"/"} component={PermanentDrawerLeft} />
+
+            <Route path={"/login"} exact component={Login} />
+          </Switch>
         </BrowserRouter>
       </Provider>
     </div>

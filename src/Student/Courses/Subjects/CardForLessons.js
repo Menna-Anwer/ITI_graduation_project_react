@@ -8,24 +8,33 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export default function CardForLessons(props) {
+    const Video = () => {
+        return (
+            <video controls width="100%">
+                <source src={`http://localhost:8080/${props.url}`} type="video/mp4" />
+            </video>
+        )
+    }
     return (
         <Card sx={{ maxWidth: 380 }} className="col-3 ms-5 mb-5">
             <CardMedia
-                component="img"
-                height="300"
-                image={props.img}
-                alt="green iguana"
+                component={Video}
+                height="140 "
+
             />
             <CardContent>
                 <Typography gutterBottom variant="h4" component="div">
-                    {props.name}
+                    Subject : {props.subject}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                    Title : {props.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {props.about}
+                    Grade : Primary {props.grade}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small"><Link className='link' to={props.link}>Watch now </Link></Button>
+                <Button size="small"><a className='link btn btn-primary' href={`http://localhost:8080/${props.url}`}>Download now </a></Button>
             </CardActions>
         </Card>
     );
