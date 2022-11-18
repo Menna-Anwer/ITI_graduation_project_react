@@ -4,7 +4,6 @@ function ExamsResult() {
 
     return (
         <>
-            <h1>Exams result</h1>
             {/* <ExamsResultTable /> */}
         </>
     )

@@ -11,13 +11,14 @@ import { useDispatch } from 'react-redux';
 import { updateStudentResultsAction } from '../../Store/Actions/updateStudentResultsAction';
 const AddPoints = (props) => {
   const { handleClose, open, data } = props;
+  const id = localStorage.getItem('id');
   const [pointData, setData] = useState({
     studentId: '',
     name: '',
     point: 0,
     feadback: "",
     subject: 'arabic',
-    teacherId: '637490d138026d6dce0f3abc'
+    teacherId: id
   })
 
   const dispatch = useDispatch();

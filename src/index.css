@@ -5,9 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient( to right ,rgba(239, 244, 247, 0.881) ,rgba(228, 242, 250, 0.817)) !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.css-levciy-MuiTablePagination-displayedRows{
+  margin: 0;
 }

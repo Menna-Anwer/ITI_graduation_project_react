@@ -12,7 +12,9 @@ import { AddLessonsAction } from './../../Store/Actions/AddLessonAction';
 import Lessone from './../../Teacher/Lesson/Lessone';
 import { editeLessonsAction } from '../../Store/Actions/editeLessonAction';
 function AddLesson(props) {
+
   const { handleClose, open, data } = props;
+  const id = localStorage.getItem('id');
   const [lessonData, setData] = useState({
     title: "",
     video: '',
@@ -35,6 +37,14 @@ function AddLesson(props) {
         videoName: data.lessonURL,
         subject: data.lessonSubj,
         grade: data.lessonGrade
+      })
+    }else{
+      setData({
+        title: "",
+        video: '',
+        videoName: "",
+        subject: "",
+        grade: ""
       })
     }
   },[data])
@@ -101,7 +111,7 @@ function AddLesson(props) {
     formData.append('lessonGrade', lessonData.grade);
     
     if(data === null){
-      formData.append('lessonCreator', '637490d138026d6dce0f3abc');
+      formData.append('lessonCreator', id);
       dispatch(AddLessonsAction(formData));
     }else{
       dispatch(editeLessonsAction(formData, data._id));

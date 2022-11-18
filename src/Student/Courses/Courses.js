@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLessons } from "../../Store/Actions/lessonsAction";
-// import MediaCard from "./MediaCard";
-import CardForLessons from "./Subjects/CardForLessons";
 import MediaCard from './../../Components/CardLessone/CardLessone';
 
 function Courses() {
@@ -14,7 +12,7 @@ function Courses() {
 
   return (
      <div className="container">
-        <div className="row">
+        <div className="row justify-content-evenly">
                   {lessons.map((ele) => (
                     <MediaCard
                       title={ele.lessonTitle}

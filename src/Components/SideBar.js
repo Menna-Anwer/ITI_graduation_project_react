@@ -11,32 +11,109 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, useHistory } from "react-router-dom";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-// import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import EventIcon from "@mui/icons-material/Event";
 import TableViewIcon from "@mui/icons-material/TableView";
+import GradingIcon from '@mui/icons-material/Grading';
 import { Route, Switch } from "react-router-dom";
 import Lessone from "./../Teacher/Lesson/Lessone";
 import Points from "./../Teacher/Points/Points";
-
-import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
+import LogoutIcon from '@mui/icons-material/Logout';
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Courses from "../Student/Courses/Courses";
-import Arabic from "../Student/Courses/Subjects/Arabic";
-import English from "../Student/Courses/Subjects/English";
-import Mathematics from "../Student/Courses/Subjects/Mathematics";
-import Sciences from "../Student/Courses/Subjects/Sciences";
 import ExamsResult from "../Student/Exams Result/ExamsResult";
-import SubjectsTeacher from "../Student/SubjectsTeachers/SubjectsTeachers";
 import TablePage from "../Student/Time Table/TimeTablePage";
 import Events from "../Student/Events/EventsPage";
 import TeacherTimeTable from "../Teacher/Time Table/TeacherTimeTable";
 import "./sidebar.css"
-const drawerWidth = 200;
+import { useEffect } from "react";
+import { axiosinstance } from "../Network/axiosinstance";
+import { useDispatch } from "react-redux";
+import { getUserAction } from "../Store/Actions/getUserAction";
+import { useAuth } from "./auth";
+const drawerWidth = 240;
+
+
+
+const teacherRoutes = [
+  {
+    url:'lessones',
+    title: 'Lessones',
+    icon: <MenuBookIcon style={{ fontSize: "25px" }} />,
+    comp: Lessone
+  },
+  {
+    url:'grades',
+    title: 'Grades',
+    icon: <GradingIcon style={{ fontSize: "25px" }} />,
+    comp: Points
+  },
+  {
+    url:'timetable',
+    title: 'Timetable',
+    icon: <TableViewIcon style={{ fontSize: "25px" }} />,
+    comp: TeacherTimeTable
+  },
+  {
+    url:'events',
+    title: 'Events',
+    icon: <EventIcon style={{ fontSize: "25px" }} />,
+    comp: Events
+  }
+]
+
+const studentRoutes = [
+  {
+    url:'lessones',
+    title: 'Lessones',
+    icon: <MenuBookIcon style={{ fontSize: "25px" }} />,
+    comp: Courses
+  },
+  {
+    url:'results',
+    title: 'Exam results',
+    icon: <WorkspacePremiumIcon style={{ fontSize: "25px" }} />,
+    comp: ExamsResult
+  },
+  {
+    url:'events',
+    title: 'Events',
+    icon: <EventIcon style={{ fontSize: "25px" }} />,
+    comp: Events
+  },
+  {
+    url:'timetable',
+    title: 'Timetable',
+    icon: <TableViewIcon style={{ fontSize: "25px" }} />,
+    comp: TablePage
+  }
+]
 
 export default function PermanentDrawerLeft() {
+  const [page, setPage] = React.useState('');
+  const type = localStorage.getItem('type');
+  const dispatch = useDispatch();
+  const auth = useAuth();
+  const history = useHistory();
+  useEffect(() => {
+    // try {
+    //   const type = localStorage.getItem('type');
+    //   const id = localStorage.getItem('id');
+
+    //   if(type === 'student'){
+    //     axiosinstance.get('/student/id/',{
+    //       params:{
+    //         id: id
+    //       }
+    //     }).then(res =>{
+    //     dispatch(getUserAction(res.data))
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }, [])
   return (
     <BrowserRouter>
       <Box sx={{ display: "flex", overflow: "visible" }}>
@@ -48,8 +125,8 @@ export default function PermanentDrawerLeft() {
           }}
         >
           <Toolbar>
-            <Typography variant="h6" noWrap component="div">
-              Nav
+            <Typography variant="h4" noWrap component="div">
+              {page}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -68,19 +145,49 @@ export default function PermanentDrawerLeft() {
           <Toolbar />
           <Divider />
           <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/lessone">
-                      <MenuBookIcon style={{ fontSize: "25px" }} /> Lessons
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
+            {
+            type === 'teacher' ? 
+            teacherRoutes.map((rout, index) => (
+              <Link className="nav-link" to={`/${rout.url}`} key={index}>
+              <ListItem>
+                <ListItemButton onClick={() => {
+                  setPage(rout.title);
+                }}>
+                  <ListItemIcon>
+                    {rout.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={rout.title} />
+                </ListItemButton>
+              </ListItem>
+            </Link> 
+            )) :
+            studentRoutes.map((rout, index) => (
+              <Link className="nav-link" to={`/${rout.url}`} key={index}>
+              <ListItem>
+                <ListItemButton onClick={() => {
+                  setPage(rout.title);
+                }}>
+                  <ListItemIcon>
+                    {rout.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={rout.title} />
+                </ListItemButton>
+              </ListItem>
+            </Link> 
+            ))
+          }
+          <ListItem>
+                <ListItemButton onClick={()=>{
+                  auth.logout();
+                  history.replace('/login')
+                }}>
+                  <ListItemIcon>
+                  <LogoutIcon style={{ fontSize: "25px" }} />
+                  </ListItemIcon>
+                  <ListItemText primary={'Logout'} />
+                </ListItemButton>
+              </ListItem>
+            {/* <ListItem>
               <ListItemButton>
                 <ListItemIcon>
                   <h5>
@@ -166,30 +273,35 @@ export default function PermanentDrawerLeft() {
                 </ListItemIcon>
                 <ListItemText />
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
           </List>
         </Drawer>
-        <Box 
+        <Box
           component="main"
           sx={{ flexGrow: 1, p: 3 }}
         >
           <Toolbar />
           <Switch>
-            <Route path={"/lessone"} exact component={Lessone} />
-            <Route path={"/points"} exact component={Points} />
+            {
+            type === 'teacher' ? 
+            teacherRoutes.map((rout, index) => (
+              <Route path={`/${rout.url}`} exact component={rout.comp} key={index}/>
+            )) : 
+            studentRoutes.map((rout, index) => (
+              <Route path={`/${rout.url}`} exact component={rout.comp} key={index}/>
+            ))
+            }
+            {/* <Route path={"/lessones"} exact component={Lessone} />
+            <Route path={"/grades"} exact component={Points} />
             <Route path={"/Courses"} exact component={Courses} />
-            <Route path={"/Arabic"} exact component={Arabic} />
-            <Route path={"/English"} exact component={English} />
-            <Route path={"/Mathematics"} exact component={Mathematics} />
-            <Route path={"/Sciences"} exact component={Sciences} />
             <Route path={"/ExamsResult"} exact component={ExamsResult} />
             <Route path={"/TimeTable"} exact component={TablePage} />
-            <Route path={"/Events"} exact component={Events} />
+            <Route path={"/events"} exact component={Events} />
             <Route
               path={"/TeacherTimeTable"}
               exact
               component={TeacherTimeTable}
-            />
+            /> */}
           </Switch>
         </Box>
       </Box>

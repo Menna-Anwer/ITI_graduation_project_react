@@ -23,7 +23,7 @@ const Points = () => {
         setOpen(false);
       };
   return (
-    <div>
+    <div className='d-flex justify-content-center align-items-center' style={{height: '80vh'}}>
        <TablePoints rows={students} handleClickOpen={handleClickOpen} />
        <AddPoints open={open}  handleClose={handleClose} data={data}/>
     </div>

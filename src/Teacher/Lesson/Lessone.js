@@ -13,9 +13,10 @@ function Lessone() {
     const [open, setOpen] = useState(false);
     const [less, setLess] = useState(null);
     const {lessons} =useSelector(state => state.lessonTeacher)
+    const id = localStorage.getItem('id');
     const dispatch = useDispatch()
     useEffect(()=>{
-      dispatch(GetLessonsAction("637490d138026d6dce0f3abc"))
+      dispatch(GetLessonsAction(id))
     },[])
 
     
@@ -36,7 +37,7 @@ function Lessone() {
     }
   return (
     <section className='container'> 
-      <div className='row'>
+      <div className='row justify-content-evenly'>
         {lessons.map(ele=>(<MediaCard title={ele.lessonTitle} video={ele.lessonURL} 
         subject={ele.lessonSubj}grade={ele.lessonGrade} 
         handleClickOpen={handleClickOpen} ele={ele} hidden={false} handleDelete={handleDelete} key={ele._id}/>))}

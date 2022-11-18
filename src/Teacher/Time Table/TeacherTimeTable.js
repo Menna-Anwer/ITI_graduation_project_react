@@ -1,12 +1,12 @@
 import TeacherTable from "./TeacherTable"
-
+import './teacher.css'
 function TeacherTimeTable() {
 
     return (
-        <>
-            <h1>teacher Time Table</h1>
-            <TeacherTable />
-        </>
+        <div className="d-flex justify-content-center align-items-center vh-80">
+            <TeacherTable/>
+        </div>
+
     )
 }
 export default TeacherTimeTable

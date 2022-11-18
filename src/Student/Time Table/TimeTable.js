@@ -42,8 +42,8 @@ export default function TimeTable() {
     console.log(timeTable.timeTable)
 
     return (
-        <TableContainer component={Paper} style={{width:"90%",height:"75vh",margin:"auto"}}>
-            <Table style={{height:"75vh"}} aria-label="customized table">
+        <TableContainer component={Paper} style={{maxWidth: 1200}}>
+            <Table style={{maxWidth: 1200}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Day</StyledTableCell>

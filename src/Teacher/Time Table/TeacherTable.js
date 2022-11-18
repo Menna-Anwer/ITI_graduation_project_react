@@ -52,8 +52,6 @@ export default function TeacherTable() {
                         <StyledTableCell align="center">10:15 - 11:00</StyledTableCell>
                         <StyledTableCell align="center">11:15 - 12:00</StyledTableCell>
                         <StyledTableCell align="center">12:00 - 12:45</StyledTableCell>
-
-
                     </TableRow>
                 </TableHead>
                 <TableBody>
