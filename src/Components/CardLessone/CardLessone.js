@@ -29,8 +29,8 @@ export default function MediaCard(props) {
     )
   }
   return (
-    <div className="my-4" style={{ width: 331 }}>
-      <Card sx={{ width: 331 }} >
+    <div className="my-4" style={{ width: 380 }}>
+      <Card sx={{ width: '100%' }} >
         <CardMedia
           component={Video}
           height="140"

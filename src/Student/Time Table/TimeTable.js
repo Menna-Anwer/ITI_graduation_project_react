@@ -39,8 +39,8 @@ export default function TimeTable() {
         dispatch(getTimeTable())
     }, [])
     return (
-        <TableContainer component={Paper} style={{maxWidth: 1200}}>
-            <Table style={{maxWidth: 1200}} aria-label="customized table">
+        <TableContainer component={Paper} sx={{maxWidth: 1200}}>
+            <Table sx={{maxWidth: 1200}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Day</StyledTableCell>

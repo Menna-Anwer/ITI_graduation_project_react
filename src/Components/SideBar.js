@@ -34,6 +34,9 @@ import { getUserAction } from "../Store/Actions/getUserAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useAuth } from "./auth";
 import ProfileHolder from "../Profile/Profile";
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from "@mui/material";
+
 const drawerWidth = 240;
 
 
@@ -104,46 +107,73 @@ const studentRoutes = [
   }
 ]
 
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft(props) {
   const [page, setPage] = React.useState('');
   const type = localStorage.getItem('type');
   const auth = useAuth();
   const history = useHistory();
   const location = useLocation();
- 
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   useEffect(() => {
     if(location.pathname === "/" ){
       history.push('/profile');
     }
   },[])
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const container = window !== undefined ? () => window().document.body : undefined;
   return (
-      <Box sx={{ display: "flex", overflow: "visible" }}>
+      <Box sx={{ display: "flex"}}>
         <CssBaseline />
         <AppBar
+          position="fixed"
           sx={{
-            width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
           }}
         >
           <Toolbar>
-            <Typography variant="h4" noWrap component="div">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+            <Typography variant="h5" noWrap component="div">
               {page}
             </Typography>
           </Toolbar>
         </AppBar>
+        <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
         <Drawer
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box",
-            },
+          container={container}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true
           }}
-          variant="permanent"
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+          variant="temporary"
           anchor="left"
         >
-          <Toolbar />
+          <Toolbar >
+          <Typography variant="h3" noWrap component="div" className="text-center w-100 text-primary">
+              Agial
+            </Typography>
+          </Toolbar>
           <Divider />
           <List>
             {
@@ -190,9 +220,69 @@ export default function PermanentDrawerLeft() {
             </ListItem>
           </List>
         </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+          open
+        >
+          <Toolbar >
+          <Typography variant="h3" noWrap component="div" className="text-center w-100 text-primary">
+              Agial
+            </Typography>
+          </Toolbar>
+          <Divider />
+          <List>
+            {
+              type === 'teacher' ?
+                teacherRoutes.map((rout, index) => (
+                  <NavLink className="nav-link" activeClassName="active" to={`/${rout.url}`} key={index}>
+                    <ListItem>
+                      <ListItemButton onClick={() => {
+                        setPage(rout.title);
+                      }}>
+                        <ListItemIcon>
+                          {rout.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={rout.title} />
+                      </ListItemButton>
+                    </ListItem>
+                  </NavLink>
+                )) :
+                studentRoutes.map((rout, index) => (
+                  <Link className="nav-link" to={`/${rout.url}`} key={index}>
+                    <ListItem>
+                      <ListItemButton onClick={() => {
+                        setPage(rout.title);
+                      }}>
+                        <ListItemIcon>
+                          {rout.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={rout.title} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
+                ))
+            }
+            <ListItem>
+              <ListItemButton onClick={() => {
+                auth.logout();
+                history.replace('/login')
+              }}>
+                <ListItemIcon>
+                  <LogoutIcon style={{ fontSize: "25px" }} />
+                </ListItemIcon>
+                <ListItemText primary={'Logout'} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Drawer>
+        </Box>
         <Box
           component="main"
-          sx={{ flexGrow: 1, p: 3 }}
+          sx={{ flexGrow: 1, p: 3 , width: { sm: `calc(100% - ${drawerWidth}px)` }}}
         >
           <Toolbar />
           {/* <Switch> */}
