@@ -38,9 +38,6 @@ export default function TimeTable() {
     useEffect(() => {
         dispatch(getTimeTable())
     }, [])
-    console.log(timeTable)
-    console.log(timeTable.timeTable)
-
     return (
         <TableContainer component={Paper} style={{maxWidth: 1200}}>
             <Table style={{maxWidth: 1200}} aria-label="customized table">

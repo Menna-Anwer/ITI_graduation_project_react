@@ -19,7 +19,7 @@ const mapped = {
   7: 'Frinsh'
 }
 export default function MediaCard(props) {
-  const { title, video, subject, grade, ele, handleClickOpen, handleDelete,hidden} = props
+  const { title, video, subject, grade, ele, handleClickOpen, handleDelete, hidden } = props
 
   const Video = () => {
     return (
@@ -29,7 +29,7 @@ export default function MediaCard(props) {
     )
   }
   return (
-    <div className="my-4" style={{width: 331}}>
+    <div className="my-4" style={{ width: 331 }}>
       <Card sx={{ width: 331 }} >
         <CardMedia
           component={Video}
@@ -42,7 +42,7 @@ export default function MediaCard(props) {
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" hidden={hidden}>
             {grade}
           </Typography>
         </CardContent>

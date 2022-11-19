@@ -1,0 +1,59 @@
+.main {
+    position: relative;
+    margin-right: 0;
+    /* margin-left: 1em; */
+    height: auto;
+    width: auto;
+    background: rgb(85, 87, 201);
+    background: linear-gradient(90deg, rgba(85, 87, 201, 0.9948354341736695) 0%, rgba(110, 204, 224, 1) 53%);
+}
+
+.basic {
+    width: 40%;
+    height: auto;
+    float: left;
+    text-align: left;
+}
+
+.basic h6 {
+    margin-bottom: 2em;
+    color: rgba(54, 47, 47, 0.966);
+}
+
+.info {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    margin-left: 3em;
+    padding-left: 3em;
+    height: 40%;
+    width: 90%;
+    background: rgb(85, 87, 201);
+    background: linear-gradient(90deg, rgba(85, 87, 201, 0.9948354341736695) 0%, rgba(110, 204, 224, 1) 53%);
+
+}
+
+.info h3 {
+    position: absolute;
+    /* top: 50%; */
+    right: 15%;
+    margin-top: 10em;
+    text-align: right;
+}
+
+.img {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 12em;
+    height: 12em;
+}
+
+.links {
+    position: absolute;
+    margin-top: 10px;
+    width: 100px;
+    height: 150px;
+    border: 1px solid black;
+
+}

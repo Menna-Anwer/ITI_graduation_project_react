@@ -11,7 +11,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { BrowserRouter, Link, useHistory } from "react-router-dom";
+import { BrowserRouter, Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import EventIcon from "@mui/icons-material/Event";
 import TableViewIcon from "@mui/icons-material/TableView";
@@ -31,32 +31,40 @@ import { useEffect } from "react";
 import { axiosinstance } from "../Network/axiosinstance";
 import { useDispatch } from "react-redux";
 import { getUserAction } from "../Store/Actions/getUserAction";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useAuth } from "./auth";
+import Profile from "../Profile/Profile";
 const drawerWidth = 240;
 
 
 
 const teacherRoutes = [
   {
-    url:'lessones',
+    url: 'profile',
+    title: 'Profile',
+    icon: <AccountCircleIcon style={{ fontSize: "25px" }} />,
+    comp: Profile
+  },
+  {
+    url: 'lessones',
     title: 'Lessones',
     icon: <MenuBookIcon style={{ fontSize: "25px" }} />,
     comp: Lessone
   },
   {
-    url:'grades',
+    url: 'grades',
     title: 'Grades',
     icon: <GradingIcon style={{ fontSize: "25px" }} />,
     comp: Points
   },
   {
-    url:'timetable',
+    url: 'timetable',
     title: 'Timetable',
     icon: <TableViewIcon style={{ fontSize: "25px" }} />,
     comp: TeacherTimeTable
   },
   {
-    url:'events',
+    url: 'events',
     title: 'Events',
     icon: <EventIcon style={{ fontSize: "25px" }} />,
     comp: Events
@@ -65,25 +73,31 @@ const teacherRoutes = [
 
 const studentRoutes = [
   {
-    url:'lessones',
+    url: 'profile',
+    title: 'Profile',
+    icon: <AccountCircleIcon style={{ fontSize: "25px" }} />,
+    comp: Profile
+  },
+  {
+    url: 'lessones',
     title: 'Lessones',
     icon: <MenuBookIcon style={{ fontSize: "25px" }} />,
     comp: Courses
   },
   {
-    url:'results',
+    url: 'results',
     title: 'Exam results',
     icon: <WorkspacePremiumIcon style={{ fontSize: "25px" }} />,
     comp: ExamsResult
   },
   {
-    url:'events',
+    url: 'events',
     title: 'Events',
     icon: <EventIcon style={{ fontSize: "25px" }} />,
     comp: Events
   },
   {
-    url:'timetable',
+    url: 'timetable',
     title: 'Timetable',
     icon: <TableViewIcon style={{ fontSize: "25px" }} />,
     comp: TablePage
@@ -96,26 +110,14 @@ export default function PermanentDrawerLeft() {
   const dispatch = useDispatch();
   const auth = useAuth();
   const history = useHistory();
+  const location = useLocation();
+ 
   useEffect(() => {
-    // try {
-    //   const type = localStorage.getItem('type');
-    //   const id = localStorage.getItem('id');
-
-    //   if(type === 'student'){
-    //     axiosinstance.get('/student/id/',{
-    //       params:{
-    //         id: id
-    //       }
-    //     }).then(res =>{
-    //     dispatch(getUserAction(res.data))
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  }, [])
+    if(location.pathname === "/" ){
+      history.push('/profile');
+    }
+  },[])
   return (
-    <BrowserRouter>
       <Box sx={{ display: "flex", overflow: "visible" }}>
         <CssBaseline />
         <AppBar
@@ -146,134 +148,47 @@ export default function PermanentDrawerLeft() {
           <Divider />
           <List>
             {
-            type === 'teacher' ? 
-            teacherRoutes.map((rout, index) => (
-              <Link className="nav-link" to={`/${rout.url}`} key={index}>
-              <ListItem>
-                <ListItemButton onClick={() => {
-                  setPage(rout.title);
-                }}>
-                  <ListItemIcon>
-                    {rout.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={rout.title} />
-                </ListItemButton>
-              </ListItem>
-            </Link> 
-            )) :
-            studentRoutes.map((rout, index) => (
-              <Link className="nav-link" to={`/${rout.url}`} key={index}>
-              <ListItem>
-                <ListItemButton onClick={() => {
-                  setPage(rout.title);
-                }}>
-                  <ListItemIcon>
-                    {rout.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={rout.title} />
-                </ListItemButton>
-              </ListItem>
-            </Link> 
-            ))
-          }
-          <ListItem>
-                <ListItemButton onClick={()=>{
-                  auth.logout();
-                  history.replace('/login')
-                }}>
-                  <ListItemIcon>
+              type === 'teacher' ?
+                teacherRoutes.map((rout, index) => (
+                  <NavLink className="nav-link" activeClassName="active" to={`/${rout.url}`} key={index}>
+                    <ListItem>
+                      <ListItemButton onClick={() => {
+                        setPage(rout.title);
+                      }}>
+                        <ListItemIcon>
+                          {rout.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={rout.title} />
+                      </ListItemButton>
+                    </ListItem>
+                  </NavLink>
+                )) :
+                studentRoutes.map((rout, index) => (
+                  <Link className="nav-link" to={`/${rout.url}`} key={index}>
+                    <ListItem>
+                      <ListItemButton onClick={() => {
+                        setPage(rout.title);
+                      }}>
+                        <ListItemIcon>
+                          {rout.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={rout.title} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
+                ))
+            }
+            <ListItem>
+              <ListItemButton onClick={() => {
+                auth.logout();
+                history.replace('/login')
+              }}>
+                <ListItemIcon>
                   <LogoutIcon style={{ fontSize: "25px" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={'Logout'} />
-                </ListItemButton>
-              </ListItem>
-            {/* <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/points">
-                      <TableViewIcon style={{ fontSize: "25px" }} /> Points
-                    </Link>
-                  </h5>
                 </ListItemIcon>
-                <ListItemText />
+                <ListItemText primary={'Logout'} />
               </ListItemButton>
             </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/event">
-                      <EventIcon style={{ fontSize: "25px" }} />
-                      Events
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/Courses">
-                      <MenuBookIcon style={{ fontSize: "25px" }} /> Courses
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/TimeTable">
-                      <TableViewIcon style={{ fontSize: "25px" }} /> Time Tabel
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/ExamsResult">
-                      <WorkspacePremiumIcon style={{ fontSize: "25px" }} />
-                      Exams Result
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/Events">
-                      <EventIcon style={{ fontSize: "25px" }} /> Events
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <h5>
-                    <Link className="nav-link" to="/TeacherTimeTable">
-                      <TableViewIcon style={{ fontSize: "25px" }} /> tTime
-                      Tabel
-                    </Link>
-                  </h5>
-                </ListItemIcon>
-                <ListItemText />
-              </ListItemButton>
-            </ListItem> */}
           </List>
         </Drawer>
         <Box
@@ -281,30 +196,18 @@ export default function PermanentDrawerLeft() {
           sx={{ flexGrow: 1, p: 3 }}
         >
           <Toolbar />
-          <Switch>
+          {/* <Switch> */}
             {
-            type === 'teacher' ? 
-            teacherRoutes.map((rout, index) => (
-              <Route path={`/${rout.url}`} exact component={rout.comp} key={index}/>
-            )) : 
-            studentRoutes.map((rout, index) => (
-              <Route path={`/${rout.url}`} exact component={rout.comp} key={index}/>
-            ))
+              type === 'teacher' ?
+                teacherRoutes.map((rout, index) => (
+                  <Route path={`/${rout.url}`} exact component={rout.comp} key={index} />
+                )) :
+                studentRoutes.map((rout, index) => (
+                  <Route path={`/${rout.url}`} exact component={rout.comp} key={index} />
+                ))
             }
-            {/* <Route path={"/lessones"} exact component={Lessone} />
-            <Route path={"/grades"} exact component={Points} />
-            <Route path={"/Courses"} exact component={Courses} />
-            <Route path={"/ExamsResult"} exact component={ExamsResult} />
-            <Route path={"/TimeTable"} exact component={TablePage} />
-            <Route path={"/events"} exact component={Events} />
-            <Route
-              path={"/TeacherTimeTable"}
-              exact
-              component={TeacherTimeTable}
-            /> */}
-          </Switch>
+          {/* </Switch> */}
         </Box>
       </Box>
-    </BrowserRouter>
   );
 }

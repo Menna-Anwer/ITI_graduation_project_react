@@ -5,9 +5,7 @@ const INITIAL_VALUE = {
 export default function userReducer (state = INITIAL_VALUE , Action){
     switch(Action.type){
         case "GET_USER" :
-            console.log(Action.payload);
             return{
-                ...state,
                 user: Action.payload
             }
         default :

@@ -17,14 +17,12 @@ export default function EventsCard(props) {
     useEffect(() => {
         dispatch(getEvents())
     }, [])
-    console.log(events)
     return (
         <>
           <div className="row">
                 {events.map((event, index) => {
-                    console.log(event.location.url);
                     return (
-                        <div className="col-lg-4 col-md-6 col-sm-12 my-4">
+                        <div className="col-lg-4 col-md-6 col-sm-12 my-4" key={index}>
                             <Card >
                                 <CardMedia
                                     component="img"

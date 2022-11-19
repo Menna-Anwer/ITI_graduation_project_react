@@ -43,35 +43,35 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 // ];
 
-export default function ExamsResultTable() {
+export default function ExamsResultTable(props) {
 
-    const grades = useSelector((state) => state.grades.list)
-    const dispatch = useDispatch()
-
+    // const grades = useSelector((state) => state.grades.list)
+    // const dispatch = useDispatch()
+    const {results} = props;
     // useEffect(() => {
     //     dispatch(getGrades())
     // }, [])
 
     return (
-        <TableContainer component={Paper} sx={{ maxWidth: 900 }}>
+        <TableContainer component={Paper} sx={{ width: '70%' }}>
             <Table aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Subject</StyledTableCell>
-                        <StyledTableCell align="right">Mark</StyledTableCell>
-                        <StyledTableCell align="right">Full Mark</StyledTableCell>
-                        <StyledTableCell align="right">Status</StyledTableCell>
+                        <StyledTableCell align="right">Grade</StyledTableCell>
+                        <StyledTableCell align="right">Feadback</StyledTableCell>
+                        {/* <StyledTableCell align="right">Status</StyledTableCell> */}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {grades.map((row) => (
-                        <StyledTableRow key={row.subjectName}>
+                    {results.map((row, index) => (
+                        <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">
-                                {row.subjectName}
+                                {row.subject}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{row.mark}</StyledTableCell>
-                            <StyledTableCell align="right">{row.fullMark}</StyledTableCell>
-                            <StyledTableCell align="right">{row.status}</StyledTableCell>
+                            <StyledTableCell align="right">{row.points}</StyledTableCell>
+                            <StyledTableCell align="right">{row.feadback}</StyledTableCell>
+                            {/* <StyledTableCell align="right">{row.status}</StyledTableCell> */}
                         </StyledTableRow>
                     ))}
                 </TableBody>

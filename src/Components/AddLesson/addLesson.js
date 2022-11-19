@@ -15,17 +15,18 @@ function AddLesson(props) {
 
   const { handleClose, open, data } = props;
   const id = localStorage.getItem('id');
+  const subject = localStorage.getItem('subject');
   const [lessonData, setData] = useState({
     title: "",
     video: '',
     videoName: "",
-    subject: "",
+    subject: subject,
     grade: ""
   })
   const [error, setError] = useState({
     titleError: null,
     videoError: null,
-    subjectError: null,
+    // subjectError: null,
     gradeError: null,
   })
 
@@ -43,7 +44,7 @@ function AddLesson(props) {
         title: "",
         video: '',
         videoName: "",
-        subject: "",
+        subject: subject,
         grade: ""
       })
     }
@@ -75,16 +76,16 @@ function AddLesson(props) {
     }
 
     ///////////////////////////////////////////////////
-    else if (e.target.name === "subject") {
-      setData({
-        ...lessonData,
-        subject: e.target.value,
-      })
-      setError({
-        ...error,
-        subjectError: e.target.value.length === 0 ? "This Field is Required" : null
-      })
-    }
+    // else if (e.target.name === "subject") {
+    //   setData({
+    //     ...lessonData,
+    //     subject: e.target.value,
+    //   })
+    //   setError({
+    //     ...error,
+    //     subjectError: e.target.value.length === 0 ? "This Field is Required" : null
+    //   })
+    // }
     /////////////////////////////////////////////    
     else if (e.target.name === "grade") {
       setData({
@@ -142,7 +143,7 @@ function AddLesson(props) {
               </Stack>
               <TextField className='input' id="outlined-uncontrolled" name='title' value={lessonData.title} onChange={(e) => changeData(e)} label="Title" />
 
-              <select className="form-select form-select-md my-4" name='subject' value={lessonData.subject} onChange={(e) => changeData(e)} aria-label=".form-select-md example">
+              {/* <select className="form-select form-select-md my-4" name='subject' value={lessonData.subject} onChange={(e) => changeData(e)} aria-label=".form-select-md example">
                 <option >Select Subject</option>
                 <option value="1">Arabic</option>
                 <option value="2">English</option>
@@ -151,7 +152,7 @@ function AddLesson(props) {
                 <option value="5">Computer</option>
                 <option value="6">Social Studies </option>
                 <option value="7">French</option>
-              </select>
+              </select> */}
 
               <select className="form-select form-select-md my-4 " name='grade'
                 value={lessonData.grade} onChange={(e) => changeData(e)} aria-label=".form-select-md example">

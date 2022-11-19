@@ -62,7 +62,6 @@ const Login = () => {
         emailError: event.target.value.length === 0 ?
           "This Field is Required" : (event.target.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) ? null : ' Not valid'
       })
-      console.log(event.target.value)
     }
     /////////////////////////////////////
     else if (event.target.name === "password") {
@@ -76,7 +75,6 @@ const Login = () => {
           "This Field is Required" : event.target.value.length < 8 ?
             "Should be more than 8 characters " : null
       })
-      console.log(event.target.value)
     }
     ////////////////////////////////////
     else if (event.target.name === "type") {
@@ -89,7 +87,6 @@ const Login = () => {
         typeError: event.target.value.length === 0 ?
           "This Field is Required" : null
       })
-      console.log(event.target.value)
     }
   }
   const dispatch = useDispatch();
@@ -111,13 +108,12 @@ const Login = () => {
           "Content-Type": "application/json"
         }
       });
-      console.log(res.data);
       if (userData.type === 'student') {
         auth.login(res.data._id, userData.type, res.data.grade);
       } else {
         auth.login(res.data._id, userData.type, res.data.subject);
       }
-      history.replace(from);
+      history.replace(from,{from: from});
       dispatch(getUserAction(res.data))
     } catch (error) {
       console.log(error);
@@ -174,7 +170,6 @@ const Login = () => {
             {error && <p style={{ color: 'red' }}>{error.typeError}</p>}
             <div className='pb-5'>
               <Button className='mt-5 btn-login' type='submit' variant="contained">Login</Button>
-
             </div>
           </div>
         </form>

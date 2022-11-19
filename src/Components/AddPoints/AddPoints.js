@@ -12,12 +12,14 @@ import { updateStudentResultsAction } from '../../Store/Actions/updateStudentRes
 const AddPoints = (props) => {
   const { handleClose, open, data } = props;
   const id = localStorage.getItem('id');
+  const subject = localStorage.getItem('subject');
+
   const [pointData, setData] = useState({
     studentId: '',
     name: '',
-    point: 0,
+    point: '',
     feadback: "",
-    subject: 'arabic',
+    subject: subject,
     teacherId: id
   })
 
@@ -25,10 +27,13 @@ const AddPoints = (props) => {
 
   useEffect(() => {
     if (data !== null) {
+      console.log(data);
       setData({
         ...pointData,
         studentId: data._id,
-        name: data.name
+        name: data.name,
+        point: data.results[0].points,
+        feadback: data.results[0].feadback
       })
     }
   }, [data])
