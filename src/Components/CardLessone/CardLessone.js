@@ -37,7 +37,7 @@ export default function MediaCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
-            {mapped[subject]}
+            {subject}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
             {title}
