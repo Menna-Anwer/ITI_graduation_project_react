@@ -33,7 +33,7 @@ import { useDispatch } from "react-redux";
 import { getUserAction } from "../Store/Actions/getUserAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useAuth } from "./auth";
-import Profile from "../Profile/Profile";
+import ProfileHolder from "../Profile/Profile";
 const drawerWidth = 240;
 
 
@@ -43,7 +43,7 @@ const teacherRoutes = [
     url: 'profile',
     title: 'Profile',
     icon: <AccountCircleIcon style={{ fontSize: "25px" }} />,
-    comp: Profile
+    comp: ProfileHolder
   },
   {
     url: 'lessones',
@@ -76,7 +76,7 @@ const studentRoutes = [
     url: 'profile',
     title: 'Profile',
     icon: <AccountCircleIcon style={{ fontSize: "25px" }} />,
-    comp: Profile
+    comp: ProfileHolder
   },
   {
     url: 'lessones',
@@ -107,7 +107,6 @@ const studentRoutes = [
 export default function PermanentDrawerLeft() {
   const [page, setPage] = React.useState('');
   const type = localStorage.getItem('type');
-  const dispatch = useDispatch();
   const auth = useAuth();
   const history = useHistory();
   const location = useLocation();
